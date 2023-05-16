@@ -7,8 +7,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RequestMapping("/order")
 @RestController
 @AllArgsConstructor
@@ -17,7 +15,7 @@ public class OrderController {
     MicroserviceClientProduct microserviceClientProduct;
 
     @GetMapping("/get")
-    public ResponseEntity<ResponseEntity<List<Order>>> getOrders() {
+    public ResponseEntity getOrders() {
         return ResponseEntity.ok(orderService.ListAllOrders());
     }
     @PostMapping("/add/{productId}")

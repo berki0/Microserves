@@ -1,4 +1,4 @@
-package com.example.FeingClientService;
+package com.example.FeingClientService.ProductClient;
 import com.example.OrderService.Model.Product;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

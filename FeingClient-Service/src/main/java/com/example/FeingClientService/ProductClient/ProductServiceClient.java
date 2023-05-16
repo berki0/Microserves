@@ -1,4 +1,4 @@
-package com.example.FeingClientService;
+package com.example.FeingClientService.ProductClient;
 import com.example.OrderService.Model.Product;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;

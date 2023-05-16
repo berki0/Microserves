@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.List;
-
 @Service
 public class OrderService {
      OrderRepository orderRepository;
@@ -25,7 +23,7 @@ public class OrderService {
           orderRepository.save(order);
           return ResponseEntity.ok(order);
      }
-     public ResponseEntity<List<Order>>ListAllOrders(){
+     public ResponseEntity ListAllOrders(){
           return ResponseEntity.ok(orderRepository.findAll());
      }
 
