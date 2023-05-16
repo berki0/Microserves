@@ -1,26 +1,35 @@
 package com.example.OrderService.Controller;
 
-import com.example.OrderService.Repository.OrderRepository;
-import com.example.ProductService.ProductFeignClient;
-import com.example.ProductService.Model.Product;
+import com.example.OrderService.ClientConfig.MicroserviceClientProduct;
+import com.example.OrderService.Model.Order;
+import com.example.OrderService.Service.OrderService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping("/order")
 @RestController
 @AllArgsConstructor
 public class OrderController {
-    private OrderRepository orderRepository ;
+    OrderService orderService;
+    MicroserviceClientProduct microserviceClientProduct;
 
     @GetMapping("/get")
-    public String get(){
-        return orderRepository.findAll().toString();
+    public ResponseEntity<ResponseEntity<List<Order>>> getOrders() {
+        return ResponseEntity.ok(orderService.ListAllOrders());
     }
-    @GetMapping(value = "/add/{productID}")
-    public Product getProduct(ProductFeignClient productFeignClient, @PathVariable (name = "productID")Long productId) {
-        return productFeignClient.getProductById(productId);
+    @PostMapping("/add/{productId}")
+    public ResponseEntity<Order> saveOrder(@RequestBody Order order, @PathVariable(name = "productId") Long productId) {
+        return orderService.save(order, productId);
+    }
+    @DeleteMapping("delete/{orderID}")
+    public ResponseEntity deleteOrder( @PathVariable(name = "orderID") Long orderID){
+        return orderService.deleteOrder(orderID);
+    }
+    @PostMapping("/update")
+    public ResponseEntity<Order> updateOrder(@RequestBody Order order){
+        return orderService.updateOrder(order);
     }
 }

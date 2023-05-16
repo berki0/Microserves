@@ -1,4 +1,4 @@
-package com.example.OrderService.Model;
+package com.example.OrderService.DTO;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

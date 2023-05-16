@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -17,8 +16,8 @@ public class ProductService {
     final ProductRepository productRepository;
     final ProductMapper productMapper;
 
-    public ResponseEntity<Stream<ProductDTO>> getAllProducts() {
-        return ResponseEntity.ok(productRepository.findAll().stream().map(productMapper));
+    public ResponseEntity<String> getAllProducts() {
+        return ResponseEntity.ok(productRepository.findAll().stream().map(productMapper).toArray().toString());
     }
 
     public ResponseEntity getProductByID(Long id) {

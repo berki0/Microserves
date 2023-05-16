@@ -18,7 +18,7 @@ public class ProductController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<Stream<ProductDTO>> getAllProducts() {
+    public ResponseEntity<String> getAllProducts() {
         return productService.getAllProducts();
     }
 
@@ -37,10 +37,6 @@ public class ProductController {
         return productService.deleteProductByID(id);
     }
 
-    @DeleteMapping("/deleteProduct")
-    public ResponseEntity<String> deleteProductByProduct(@RequestBody Product product) {
-        return productService.deleteProductByProduct(product);
-    }
 
     @PostMapping("/edit")
     public ResponseEntity<String> editProduct(@RequestBody Product product) {
